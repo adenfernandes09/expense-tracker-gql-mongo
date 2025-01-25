@@ -9,18 +9,17 @@ const userTypeDef = `#graphql
  }
 
  type Query {
-    users: [User!]
     authUser: User
     user(userId:ID): User
  }
 
- type Mutations {
-    signUp(input: SignUpinput): User
-    login(input: LogInInput): User
+ type Mutation {
+    signUp(input: SignUpInput!): User
+    login(input: LogInInput!): User
     logout: LogOutResponse
  }
 
- input SignUpinput {
+ input SignUpInput {
     username: String!
     name: String!
     password: String!
