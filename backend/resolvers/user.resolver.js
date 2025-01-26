@@ -1,4 +1,3 @@
-import { users } from "../dummyData/data.js";
 import User from "../models/user.model.js";
 import bycrypt from 'bcryptjs'
 const userResolver = {

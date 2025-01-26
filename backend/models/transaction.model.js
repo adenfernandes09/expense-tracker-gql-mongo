@@ -38,11 +38,3 @@ const transactionSchema = new mongoose.Schema({
 const Transaction = mongoose.model('Transaction', transactionSchema);
 
 export default Transaction;
-
-//     userId: ID!
-// description: String!
-// paymentType: String!
-// category: String!
-// amount: Float!
-// location: String!
-// date: String!
