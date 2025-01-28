@@ -1,4 +1,3 @@
-import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/ui/Header";
 import HomePage from "./pages/HomePage";
@@ -6,9 +5,14 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignupPage";
 import TransactionPage from "./pages/TransactionPage";
 import NotFound from "./pages/NotFound";
+import { useQuery } from "@apollo/client";
+import { GET_AUTHENTICATED_USER } from "./graphql/queries/user.query";
+import { Toaster } from "react-hot-toast";
 
 function App() {
 	const authUser = true;
+
+	// if(loading) return null;
 	return (
 		<>
 			{authUser && <Header />}
@@ -19,6 +23,7 @@ function App() {
 				<Route path='/transaction/:id' element={<TransactionPage />} />
 				<Route path='*' element={<NotFound />} />
 			</Routes>
+			<Toaster />
 		</>
 	);
 }

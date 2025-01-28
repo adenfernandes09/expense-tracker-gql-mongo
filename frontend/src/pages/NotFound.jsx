@@ -5,7 +5,7 @@ const NotFound = () => {
 				<div className='flex h-screen'>
 					<div className='m-auto text-center'>
 						<div>
-							<img src='/404.svg' alt='404' />
+							<img src='/error404.svg' alt='404' />
 						</div>
 						<p className='text-sm md:text-base text-[#F6009B] p-2 mb-4'>
 							The stuff you were looking for doesn't exist

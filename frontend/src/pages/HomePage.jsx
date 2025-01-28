@@ -1,12 +1,15 @@
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
-import Cards from "../components/ui/Cards";
-import TransactionForm from "../components/ui/TransactionForm";
-
+import React from "react";
 import { MdLogout } from "react-icons/md";
+import TransactionForm from "../components/ui/TransactionForm";
+import Cards from "../components/ui/Cards"
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+import { Doughnut } from "react-chartjs-2";
+import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import { useMutation } from "@apollo/client";
+import { LOG_OUT } from "../graphql/mutations/user.mutation";
+import toast from "react-hot-toast";
+
+Chart.register(ArcElement, Tooltip, Legend);
 
 const HomePage = () => {
 	const chartData = {
@@ -25,12 +28,15 @@ const HomePage = () => {
 		],
 	};
 
-	const handleLogout = () => {
-		console.log("Logging out...");
-	};
 
-	const loading = false;
-
+	const handleLogout = async() => {
+		try {
+			await logOut();
+		} catch (error) {
+			console.log("Error logging out", error);
+			toast.error(error.message);
+		}
+	}
 	return (
 		<>
 			<div className='flex flex-col gap-6 items-center max-w-7xl mx-auto z-20 relative justify-center'>
@@ -59,4 +65,5 @@ const HomePage = () => {
 		</>
 	);
 };
+
 export default HomePage;

@@ -1,5 +1,4 @@
-import Card from "./Cards";
-
+import Card from "./Card"
 const Cards = () => {
 	return (
 		<div className='w-full px-10 min-h-[40vh]'>

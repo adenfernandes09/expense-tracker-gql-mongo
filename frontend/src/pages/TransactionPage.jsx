@@ -11,6 +11,8 @@ const TransactionPage = () => {
 		date: "",
 	});
 
+	let loading = false;
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log("formData", formData);
