@@ -7,19 +7,19 @@ import GridBackground from "../src/components/ui/GridBackground.jsx";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-	uri: 'http://localhost:4000/graphql', 
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
-	credentials: "include",
+  credentials: "include",
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<GridBackground>
-				<ApolloProvider client={client}>
-					<App />
-				</ApolloProvider>
-			</GridBackground>
-		</BrowserRouter>
-	</React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <GridBackground>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </GridBackground>
+    </BrowserRouter>
+  </React.StrictMode>
 );

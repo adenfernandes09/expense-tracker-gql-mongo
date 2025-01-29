@@ -5,9 +5,9 @@ import Cards from "../components/ui/Cards"
 
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
-import { useMutation } from "@apollo/client";
-import { LOG_OUT } from "../graphql/mutations/user.mutation";
 import toast from "react-hot-toast";
+import { useMutation } from "@apollo/client";
+import { LOGOUT } from "../graphql/mutations/user.mutation";
 
 Chart.register(ArcElement, Tooltip, Legend);
 
@@ -28,15 +28,18 @@ const HomePage = () => {
 		],
 	};
 
-
+	const [logout, {loading}] = useMutation(LOGOUT , {
+		refetchQueries: ['getAuthenticatedUser']
+	})
 	const handleLogout = async() => {
 		try {
-			await logOut();
+			await logout();
 		} catch (error) {
 			console.log("Error logging out", error);
 			toast.error(error.message);
 		}
 	}
+
 	return (
 		<>
 			<div className='flex flex-col gap-6 items-center max-w-7xl mx-auto z-20 relative justify-center'>

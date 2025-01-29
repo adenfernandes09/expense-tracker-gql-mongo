@@ -16,7 +16,10 @@ import mergedResolvers from "./resolvers/index.js";
 import mergedTypeDefs from "./typeDefs/index.js";
 import session from 'express-session';
 
+import { configurePassport } from './passport/passport.config.js';
+
 dotenv.config();
+configurePassport();
 
 const app = express();
 
@@ -43,6 +46,7 @@ app.use(
     store: store
   })
 )
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -57,21 +61,21 @@ await server.start();
 // Set up our Express middleware to handle CORS, body parsing,
 // and our expressMiddleware function.
 app.use(
-  '/graphql',
-  cors({
-    origin: 'http://localhost:4000/',
-    credentials: true,
-  }),
-  express.json(),
-  // expressMiddleware accepts the same arguments:
-  // an Apollo Server instance and optional configuration options
-  expressMiddleware(server, {
-    context: async ({ res, req }) => buildContext({res, req}),
-  }),
+	"/graphql",
+	cors({
+		origin: "http://localhost:3000",
+		credentials: true,
+	}),
+	express.json(),
+	// expressMiddleware accepts the same arguments:
+	// an Apollo Server instance and optional configuration options
+	expressMiddleware(server, {
+		context: async ({ req, res }) => buildContext({ req, res }),
+	})
 );
 await new Promise((resolve) =>
     httpServer.listen({ port: 4000 }, resolve),
   );
-  await connectDB()
+await connectDB()
 
 console.log(`🚀 Server ready at http://localhost:4000/graphql`);
