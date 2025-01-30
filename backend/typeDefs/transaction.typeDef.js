@@ -12,13 +12,13 @@ type Transaction{
 
 type Query{
     transactions: [Transaction!]
-    transaction(transactionId: ID): Transaction
+    transaction(transactionId: ID!): Transaction
 }
 
 type Mutation {
-    createTransaction(input: CreateTransactionInput): Transaction!
+    createTransaction(input: CreateTransactionInput!): Transaction!
     updateTransaction(input: UpdateTransactionInput): Transaction!
-    deleteTransaction(transactionID: ID): Transaction!
+    deleteTransaction(transactionId: ID!): Transaction!
 }
 
 input CreateTransactionInput {
@@ -31,7 +31,7 @@ input CreateTransactionInput {
 }
 
 input UpdateTransactionInput{
-    transationId: ID!
+    transactionId: ID!
     description: String
     paymentType: String
     category: String

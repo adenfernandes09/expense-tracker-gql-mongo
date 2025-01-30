@@ -6,12 +6,10 @@ import { GraphQLLocalStrategy } from "graphql-passport";
 
 export const configurePassport = async() => {
     passport.serializeUser((user, done) => {
-		console.log("Serializing user");
 		done(null, user._id);
 	});
 
 	passport.deserializeUser(async (_id, done) => {
-		console.log("Deserializing user");
 		try {
 			const user = await User.findById(_id);
 			done(null, user);
@@ -31,7 +29,6 @@ export const configurePassport = async() => {
                 if(!validPassword){
                     throw new Error("Invalid username or Password")
                 }
-                console.log("Valid username and password exist", )
                 return done(null, user);
             } catch (err) {
                 return done(err)

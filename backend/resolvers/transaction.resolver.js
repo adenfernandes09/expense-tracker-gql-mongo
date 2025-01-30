@@ -3,9 +3,11 @@ import Transaction from "../models/transaction.model.js";
 const transactionResolver = {
     Query: {
         transactions: async(_, __, context) => {
+            // console.log(context);
             try {
                 if(!context.getUser()) throw new Error('Unauthorized');
                 const userId = await context.getUser()._id;
+                console.log(userId);
 
                 const transactions = await Transaction.find({userId});
                 return transactions;
@@ -17,6 +19,7 @@ const transactionResolver = {
 
         transaction: async(_, {transactionId}) => {
             try {
+                console.log("Get single Transaction",transactionId);
                 const transaction = await Transaction.findById(transactionId);
                 return transaction;
             } catch (error) {
