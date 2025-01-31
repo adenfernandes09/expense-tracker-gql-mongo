@@ -43,7 +43,6 @@ const userResolver = {
             try {
                 const {username, password} = input;
                 const {user} = await context.authenticate('graphql-local', {username, password});
-                console.log("Control is over here", user);
                 await context.login(user);
                 return user;   
             } catch (error) {
